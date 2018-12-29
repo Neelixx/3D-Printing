@@ -1,0 +1,9 @@
+Recv: PID Autotune finished! Put the last Kp, Ki and Kd constants from below into Configuration.h
+Recv: #define DEFAULT_Kp 10.75
+Recv: #define DEFAULT_Ki 0.46
+Recv: #define DEFAULT_Kd 62.94
+Recv: ok
+
+M301 P10.75 I0.46 D62.94
+M500
+
