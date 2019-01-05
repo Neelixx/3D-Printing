@@ -328,7 +328,11 @@
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
 // Extruder temperature must be close to target for this long before M109 returns success
-#define TEMP_RESIDENCY_TIME 10  // (seconds)
+// WAC If your thermistor is not reliable, use these values:
+// #define TEMP_RESIDENCY_TIME 6
+// #define TEMP_HYSTERESIS 4       // (degC) range of +/- temperatures considered "close" to the target one
+
+#define TEMP_RESIDENCY_TIME 10  
 #define TEMP_HYSTERESIS 3       // (degC) range of +/- temperatures considered "close" to the target one
 #define TEMP_WINDOW     1       // (degC) Window around target to start the residency timer x degC early.
 
@@ -389,13 +393,15 @@
   // M106 P0 S204
   // M303 E0 S200 C8
   // M301 P27.40 I4.92 D38.16
-	// #define DEFAULT_Kp 15.53
-	// #define DEFAULT_Ki 2.96
-	// #define DEFAULT_Kd 20.35  
 
-  #define DEFAULT_Kp 15.28
-  #define DEFAULT_Ki 0.91
-  #define DEFAULT_Kd 63.82
+  // Manual adapted:
+  // #define DEFAULT_Kp 25.00
+  // #define DEFAULT_Ki 2.00
+  // #define DEFAULT_Kd 40.00
+  
+	#define DEFAULT_Kp 17.17
+	#define DEFAULT_Ki 1.26
+	#define DEFAULT_Kd 58.73  
 
 #endif // PIDTEMP
 
@@ -614,7 +620,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 3200, 408 }
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 79.750581, 79.8102, 6402, 833 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.5082115195, 80.4087765, 6450, 833 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -784,7 +790,7 @@
  */
 #define X_PROBE_OFFSET_FROM_EXTRUDER 26   // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 0    // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -1.08 // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -0.90 // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
 #define MIN_PROBE_EDGE 10
@@ -1188,27 +1194,38 @@
  *    +-------------->X     +-------------->X     +-------------->Y
  *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
  */
-//#define SKEW_CORRECTION
+#define SKEW_CORRECTION
 
 #if ENABLED(SKEW_CORRECTION)
   // Input all length measurements here:
-  #define XY_DIAG_AC 282.8427124746
-  #define XY_DIAG_BD 282.8427124746
-  #define XY_SIDE_AD 200
+  // #define XY_DIAG_AC 282.8427124746
+  // #define XY_DIAG_BD 282.8427124746
+  // #define XY_SIDE_AD 200
+
+  // real values from https://www.thingiverse.com/thing:2563185
+  #define XY_DIAG_AC 141.38
+  #define XY_DIAG_BD 140.36
+  #define XY_SIDE_AD 99.68
 
   // Or, set the default skew factors directly here
   // to override the above measurements:
-  #define XY_SKEW_FACTOR 0.0
+  // #define XY_SKEW_FACTOR 0.0
 
-  //#define SKEW_CORRECTION_FOR_Z
+  #define SKEW_CORRECTION_FOR_Z
   #if ENABLED(SKEW_CORRECTION_FOR_Z)
-    #define XZ_DIAG_AC 282.8427124746
-    #define XZ_DIAG_BD 282.8427124746
-    #define YZ_DIAG_AC 282.8427124746
-    #define YZ_DIAG_BD 282.8427124746
-    #define YZ_SIDE_AD 200
-    #define XZ_SKEW_FACTOR 0.0
-    #define YZ_SKEW_FACTOR 0.0
+//    #define XZ_DIAG_AC 282.8427124746
+//    #define XZ_DIAG_BD 282.8427124746
+//    #define YZ_DIAG_AC 282.8427124746
+//    #define YZ_DIAG_BD 282.8427124746
+//    #define YZ_SIDE_AD 200
+//    #define XZ_SKEW_FACTOR 0.0
+//    #define YZ_SKEW_FACTOR 0.0
+
+    #define XZ_DIAG_AC 141.31
+    #define XZ_DIAG_BD 140.59
+    #define YZ_DIAG_AC 141.41
+    #define YZ_DIAG_BD 140.64
+    #define YZ_SIDE_AD 99.68
   #endif
 
   // Enable this option for M852 to set skew at runtime

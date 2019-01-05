@@ -1,0 +1,45 @@
+M301 P15.28 I0.91 D63.82
+M304 P118.87 I22.32 D158.23
+M851 Z-1.08
+
+M106 P0 S204; Fan 80%
+M303 E0 S210 C8
+M500
+M107 ; Fan off
+
+#200 Grad: M303 E0 S200 C8 (*Firmware Einstellung)
+#define DEFAULT_Kp 17.17
+#define DEFAULT_Ki 1.26
+#define DEFAULT_Kd 58.73
+M301 P17.17 I1.26 D58.73
+
+#210 Grad: M303 E0 S210 C16
+#define DEFAULT_Kp 17.11
+#define DEFAULT_Ki 1.28
+#define DEFAULT_Kd 57.13
+M301 P17.11 I1.28 D57.13
+
+#230 Grad ABS ohne Lüfter: M303 E0 S230 C8
+M107 ; Fan off  
+#define DEFAULT_Kp 15.59
+#define DEFAULT_Ki 1.26
+#define DEFAULT_Kd 48.21
+
+M301 P15.59 I1.26 D48.21
+
+
+
+http://rigidtalk.com/wiki/index.php?title=PID_tuning
+
+if the temperature is getting too hot before settling down, increase Kd and decrease Kp (more creeping up on the temperature and less muscling it around)
+if the temperature tapers off just under the target and never quite reaches it, decrease Kd and increase Ki (less creeping up alongside the target, and more correction for cumulative offset) 
+
+Increasing Ki means that cruising just a hair under the target for a long time will cause Ki to gradually put more power into the heater until it reaches the target. 
+
+A higher Kd would fight this process by decreasing power to get the measured temperature curve parallel to the target temperature line.
+
+if the temperatures are taking a long time to settle, oscillating or hunting indefinitely, decrease Ki and increase Kd (less agitation from cumulative error, and more gliding into alignment with the target); alternatively try decreasing all three terms… the PID equivalent of taking some deep breaths and relaxing the amount of control you're exerting
+
+M303 E0 S210 C8 ; autotune pid
+M301 ; see current settings
+
