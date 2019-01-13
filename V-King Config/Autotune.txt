@@ -7,25 +7,48 @@ M303 E0 S210 C8
 M500
 M107 ; Fan off
 
-#200 Grad: M303 E0 S200 C8 (*Firmware Einstellung)
+#190 Grad: 
+M106 P0 S204; Fan 80%
+M303 E0 S190 C8
 #define DEFAULT_Kp 17.17
 #define DEFAULT_Ki 1.26
 #define DEFAULT_Kd 58.73
 M301 P17.17 I1.26 D58.73
 
-#210 Grad: M303 E0 S210 C16
-#define DEFAULT_Kp 17.11
-#define DEFAULT_Ki 1.28
-#define DEFAULT_Kd 57.13
-M301 P17.11 I1.28 D57.13
+#200 Grad: 
+M106 P0 S204; Fan 80%
+M303 E0 S200 C8 (*Firmware Einstellung)
+#define DEFAULT_Kp 22.41
+#define DEFAULT_Ki 2.17
+#define DEFAULT_Kd 57.82
+M301 P22.41 I2.17 D57.82
 
-#230 Grad ABS ohne Lüfter: M303 E0 S230 C8
+#210 Grad: mit 80% Lüfter
+M106 P0 S204; Fan 80%
+M303 E0 S210 C16
+#define DEFAULT_Kp 30.95
+#define DEFAULT_Ki 5.72
+#define DEFAULT_Kd 41.83
+M301 P30.95 I5.72 D41.83
+
+#230 Grad ABS ohne Lüfter: 
 M107 ; Fan off  
-#define DEFAULT_Kp 15.59
-#define DEFAULT_Ki 1.26
-#define DEFAULT_Kd 48.21
+M303 E0 S230 C8
+#define DEFAULT_Kp 34.40
+#define DEFAULT_Ki 6.27
+#define DEFAULT_Kd 47.19
+M301 P34.40 I6.27 D47.19
 
-M301 P15.59 I1.26 D48.21
+#240 Grad PETG mit Lüfter 60%: 
+M106 P0 S153; Fan 60%
+M303 E0 S240 C16
+#define DEFAULT_Kp 15.82
+#define DEFAULT_Ki 3.02
+#define DEFAULT_Kd 20.74
+
+M301 P15.82 I3.02 D20.74
+M500
+
 
 
 
