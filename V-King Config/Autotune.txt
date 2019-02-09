@@ -18,10 +18,14 @@ M301 P17.17 I1.26 D58.73
 #200 Grad: 
 M106 P0 S204; Fan 80%
 M303 E0 S200 C8 (*Firmware Einstellung)
-#define DEFAULT_Kp 22.41
-#define DEFAULT_Ki 2.17
-#define DEFAULT_Kd 57.82
-M301 P22.41 I2.17 D57.82
+#define DEFAULT_Kp 40.82
+#define DEFAULT_Ki 7.91
+#define DEFAULT_Kd 52.67
+M301 P40.82 I7.91 D52.67
+
+Kp: 22.67 Ki: 2.94 Kd: 43.64
+M301 P22.67 I2.94 D43.64
+
 
 #210 Grad: mit 80% Lüfter
 M106 P0 S204; Fan 80%
